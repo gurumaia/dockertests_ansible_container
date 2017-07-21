@@ -6,9 +6,9 @@ services:
   - docker
 
 before_install:
-  - git clone https://github.com/ansible/ansible-container.git /tmp/ansible-container
-    cd /tmp/ansible-container
-    pip install -e .[docker]
+  - git clone https://github.com/ansible/ansible-container.git /tmp/ansible-container;
+    cd /tmp/ansible-container;
+    pip install -e .[docker];
 
 script:
   - cd $TRAVIS_BUILD_DIR
