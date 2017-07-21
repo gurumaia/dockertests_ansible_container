@@ -16,7 +16,7 @@ script:
   - docker images
 
 after_success:
-  - rm -rf ~/.docker
+  - rm -rf ~/.docker;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker tag dockertests_dockerfile_ansible-nginx $DOCKER_USERNAME/dockertests_dockerfile_ansible-nginx;
     docker push $DOCKER_USERNAME/dockertests_dockerfile_ansible-nginx;
