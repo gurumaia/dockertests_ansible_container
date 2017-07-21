@@ -1,0 +1,20 @@
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+before_install:
+  - git clone https://github.com/ansible/ansible-container.git /tmp/ansible-container
+    cd /tmp/ansible-container
+    pip install -e .[docker]
+
+script:
+  - cd $TRAVIS_BUILD_DIR
+  - ansible-container build
+  - docker images
+
+after_success:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push $DOCKER_USERNAME/dockertests_dockerfile_ansible-nginx;
